@@ -10,13 +10,61 @@
     <title>WeatherApp</title>
 </head>
 <body>
+    <div class="container-fluid">
+        <!-- HEADER -->
+        <div class="row">
+            <nav class=" col-12 header navbar navbar-light bg-dark">
+                Weather App
+                <a class="logout" href="/deconnexion">Deconnexion</a>
+            </nav> 
+        </div>
 
+        <!-- Champ de saisie de la ville -->
+        <div class="row justify-content-center">
+                <div class="col-12 col-lg-5 input-group mb-3">
+                    <form class="" action="/addCity" method="post"></form>
+                        <input type="text" class="form-control" placeholder="Enter city name" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-warning" type="button" id="button-addon2">Add</button>
+                    </form>
+                </div>
+        </div>
 
-    <!-- HEADER -->
-    <nav class=" header navbar navbar-light bg-dark">
-        Weather App
-       <a class="logout" href="./login.html">Deconnexion</a>
-   </nav> 
+        <!-- Carte & infos météo -->
+        <div class="row mt-3 justify-content-center">
+             <!-- Carte -->
+            <div class="col-11 col-lg-4">
+                <div class="card" style="width: auto;">
+                    <img class="card-img-top" src="/images/map.png" alt="map">
+                </div>
+            </div>
+             <!-- infos météo -->
+            <div class="col-11 col-lg-4 text-center justify-content-center">
+                <div class="mb-2 mt-2" style='display:flex; justify-content: center;'>
+                    <p class="bolderP">Uptade cities</p>
+                    <a href="/update" class="update"><i class="ml-1 fas fa-sync-alt"></i></a>
+                </div>
+                <% if (data.length>0 and data!=undefined){%>
+                    <ol class="list-group list-group-numbered">
+                        <% for (var i=0; i<data.length; i++){ %>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold"><%= data[i].cityName %></div>
+                                </div>
+                                <div class="ms-2 me-auto" style="display:flex;">
+                                    <div class="fw-bold"><%= data[i].weatherReport %></div>
+                                    <i class="ml-1 <%= data[i].pictureClass %>"></i>
+                                    <div class="ml-1 badge badge-secondary rounded-pill"><%= data[i].minTemp %>°C</div>
+                                    <div class="ml-1 badge badge-warning rounded-pill"><%= data[i].maxnTemp %>°C</div>
+                                </div>
+                                <a href="/delete"><i class="far fa-times-circle"></i></a>
+                            </li>
+                        <% } %>
+                    </ol>
+                <%}%>
+            </div>
+        </div>  
+    </div>
+
 
 
    <!-- GRID -->
